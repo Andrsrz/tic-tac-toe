@@ -14,8 +14,12 @@ const Settings = (() => {
 	const setCellsEvents = () => {
 		let cells = document.getElementsByClassName("tic-tac-toe-cell");
 		for(const cell of cells){
-			const id = cell.id;
-			cell.setAttribute("onclick", "Gameboard.turn(" + id + ");");
+			/* I need to pass the element to the method, instead of
+			 * just the index in order to work with all my other game
+			 * logic. */
+			cell.addEventListener("click", function(e){
+				Gameboard.turn(e);
+			}, false);
 		}
 	}
 
