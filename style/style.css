@@ -24,6 +24,11 @@
 	background-color: #1468A0;
 }
 
+.cell-disabled {
+	pointer-events: none;
+	opacity: 0.8;
+}
+
 @media all and (max-width: 1000px) {
 	#tic-tac-toe {
 		width: 400px;
