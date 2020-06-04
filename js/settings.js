@@ -8,7 +8,7 @@ const Settings = (() => {
 
 	const setResetEvent = () => {
 		let reset = document.getElementById("reset");
-		reset.setAttribute("click", "Gameboard.reset();");
+		reset.setAttribute("onclick", "Gameboard.reset();");
 	}
 
 	const setEvents = () => {

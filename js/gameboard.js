@@ -10,15 +10,15 @@ const Gameboard = (() => {
 	}
 
 	const p1vscpu = () => {
-		return "Works p1vscpu";
+		console.log("Works p1vscpu");
 	}
 
 	const p1vsp2 = () => {
-		return "Works p1vsp2";
+		console.log("Works p1vsp2");
 	}
 
 	const reset = () => {
-		return "Works reset";
+		console.log("Works reset");
 	}
 
 	return {getCells, updateAvailableCells, p1vscpu, p1vsp2, reset};
