@@ -11,6 +11,16 @@
 	grid-template-rows: repeat(3, 1fr);
 }
 
+.tic-tac-toe-cell {
+	border: 1px solid #000;
+	cursor: pointer;
+	background-color: #4F94E7
+}
+
+.tic-tac-toe-cell:hover {
+	background-color: #1468A0;
+}
+
 @media all and (max-width: 1000px) {
 	#tic-tac-toe {
 		width: 400px;
