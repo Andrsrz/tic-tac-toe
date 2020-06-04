@@ -9,5 +9,17 @@ const Gameboard = (() => {
 		cells.splice(cellToRemove, 1);
 	}
 
-	return {getCells, updateAvailableCells};
+	const p1vscpu = () => {
+		return "Works p1vscpu";
+	}
+
+	const p1vsp2 = () => {
+		return "Works p1vsp2";
+	}
+
+	const reset = () => {
+		return "Works reset";
+	}
+
+	return {getCells, updateAvailableCells, p1vscpu, p1vsp2, reset};
 })();
