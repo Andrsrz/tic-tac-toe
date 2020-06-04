@@ -37,6 +37,14 @@ const Gameboard = ((cells) => {
 		reset();
 	}
 
+	const start = (mode) => {
+		if(mode === 0){
+			p1vscpu();
+		}else if(mode === 1){
+			p1vsp2();
+		}
+	}
+
 	const reset = () => {
 		console.log("reset");
 		clearBoard();
@@ -46,5 +54,5 @@ const Gameboard = ((cells) => {
 		console.log("turn " + index);
 	}
 
-	return {getCells, updateAvailableCells, p1vscpu, p1vsp2, reset, turn};
+	return {getCells, updateAvailableCells, start, reset, turn};
 })([0,1,2,3,4,5,6,7,8]);
