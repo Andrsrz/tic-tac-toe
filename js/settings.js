@@ -11,9 +11,18 @@ const Settings = (() => {
 		reset.setAttribute("onclick", "Gameboard.reset();");
 	}
 
+	const setCellsEvents = () => {
+		let cells = document.getElementsByClassName("tic-tac-toe-cell");
+		for(const cell of cells){
+			const id = cell.id;
+			cell.setAttribute("onclick", "Gameboard.turn(" + id + ");");
+		}
+	}
+
 	const setEvents = () => {
 		setRadioButtonsEvents();
 		setResetEvent();
+		setCellsEvents();
 	}
 
 	return {setEvents};
