@@ -11,7 +11,7 @@ const Player = (name, movements, weapon) => {
 		moves.push(cell);
 	}
 
-	/* The attack methos works as follows:
+	/* The attack method works as follows:
 	 * we get the cell's number the player is going
 	 * to attack to update the player movements and
 	 * put the player's weapon. */
