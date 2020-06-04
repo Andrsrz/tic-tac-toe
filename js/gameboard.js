@@ -1,5 +1,5 @@
-const Gameboard = (() => {
-	const getCells = () => cells[0,1,2,3,4,5,6,7,8];
+const Gameboard = ((cells) => {
+	const getCells = () => cells;
 
 	/* This method updates the available cells of the
 	 * gameboard, deleting the last cell that have been
@@ -9,16 +9,37 @@ const Gameboard = (() => {
 		cells.splice(cellToRemove, 1);
 	}
 
+	const clearBoard = () => {
+		for(let i = 0; i < cells.length; i++){
+			let cell = document.getElementById(i);
+			/* This actually clears the cell */
+			while(cell.firstChild){
+				cell.removeChild(cell.firstChild);
+			}
+		}
+	}
+
+	/*
+	 * This could actually work to populate each cell.
+	 *
+	 * let h2 = document.createElement("h2");
+	 * h2.style.alignSelf = "center";
+	 * h2.innerHTML = "TEST";
+	 * cell.appendChild(h2); */
+
 	const p1vscpu = () => {
 		console.log("p1vscpu");
+		reset();
 	}
 
 	const p1vsp2 = () => {
 		console.log("p1vsp2");
+		reset();
 	}
 
 	const reset = () => {
 		console.log("reset");
+		clearBoard();
 	}
 
 	const turn = (index) => {
@@ -26,4 +47,4 @@ const Gameboard = (() => {
 	}
 
 	return {getCells, updateAvailableCells, p1vscpu, p1vsp2, reset, turn};
-})();
+})([0,1,2,3,4,5,6,7,8]);

@@ -14,7 +14,10 @@
 .tic-tac-toe-cell {
 	border: 1px solid #000;
 	cursor: pointer;
-	background-color: #4F94E7
+	background-color: #4F94E7;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
 }
 
 .tic-tac-toe-cell:hover {
