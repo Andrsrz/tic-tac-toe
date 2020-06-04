@@ -3,9 +3,24 @@
 }
 
 #tic-tac-toe {
+	margin: auto;
 	display: grid;
 	width: 500px;
 	height: 500px;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
+}
+
+@media all and (max-width: 1000px) {
+	#tic-tac-toe {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+@media all and (max-width: 800px) {
+	#tic-tac-toe {
+		width: 300px;
+		height: 300px;
+	}
 }
