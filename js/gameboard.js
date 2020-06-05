@@ -77,15 +77,22 @@ const Gameboard = ((cells, removedCells) => {
 									  [0,4,8],
 									  [2,4,6] ];
 		const playerMoves = player.getMovements();
+
+		/* No need to check if there aren't at
+		 * least three moves of the player. */
+		if(playerMoves.length < 3){
+			return false;
+		}
+
 		for(let i = 0; i < winningCombinations.length; i++){
 			if(playerMoves.includes(winningCombinations[i][0]) &&
 				playerMoves.includes(winningCombinations[i][1]) &&
 				playerMoves.includes(winningCombinations[i][2])){
 				return true;
-			}else{
-				return false;
 			}
 		}
+
+		return false;
 	}
 
 	const turn = (element) => {
