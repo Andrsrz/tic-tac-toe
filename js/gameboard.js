@@ -2,6 +2,7 @@ const Gameboard = ((cells, removedCells) => {
 	var P1;
 	var P2OrCPU;
 	var CPUEnabled = false;
+	var winner = false;
 	/* This method updates the available cells of the
 	 * gameboard, deleting the last cell that have been
 	 * played. */
@@ -151,15 +152,16 @@ const Gameboard = ((cells, removedCells) => {
 		updateAvailableCells(cellNumber);
 
 		/* If no one wons */
-		if(cells.length === 0){
+		if(cells.length === 0 && !winner){
 			endGame(null);
 		}
 	}
 
-	const endGame = (winner) => {
+	const endGame = (whoWon) => {
+		winner = true;
 		/* Announce Winner */
 		let announce = "";
-		winner ? announce = winner.getName() + " Wins" : announce = "It's a Tie";
+		whoWon ? announce = whoWon.getName() + " Wins" : announce = "It's a Tie";
 		const spanWinner = document.getElementById("winner");
 		let h2Winner = document.createElement("h2");
 		h2Winner.innerHTML = announce;
