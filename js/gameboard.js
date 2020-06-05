@@ -1,5 +1,5 @@
 const Gameboard = ((cells, removedCells) => {
-	var P1;
+	var P1 = Player("P1", [], "X");
 	var P2OrCPU;
 	/* This method updates the available cells of the
 	 * gameboard, deleting the last cell that have been
@@ -7,8 +7,8 @@ const Gameboard = ((cells, removedCells) => {
 	const updateAvailableCells = (cellToRemove) => {
 		/* We store our cells in two arrays to have more
 		 * control over out data. */
-		removedCells.push(Number(cellToRemove));
-		cells.splice(Number(cellToRemove), 1);
+		removedCells.push(cellToRemove);
+		cells.splice(cellToRemove, 1);
 		console.log("cells available : " + cells);
 		console.log("cells not available : " + removedCells);
 	}
@@ -32,17 +32,11 @@ const Gameboard = ((cells, removedCells) => {
 
 	const p1vscpu = () => {
 		console.log("p1vscpu");
-		reset();
-		/* The players */
-		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("CPU", [], "O");
 	}
 
 	const p1vsp2 = () => {
 		console.log("p1vsp2");
-		reset();
-		/* The players */
-		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("P2", [], "O");
 	}
 
@@ -92,20 +86,17 @@ const Gameboard = ((cells, removedCells) => {
 		/* Disable cell to the user */
 		const cell = element.target;
 		cell.setAttribute("class", "tic-tac-toe-cell cell-disabled");
-		/* Update cells */
-		updateAvailableCells(cell.id);
+		const cellNumber = Number(cell.id);
 		/* game */
-		if(cells.length % 2 == 0){
+		if(cells.length % 2 != 0){
 			/* P1 Stars */
-			P1.getMovements().push(cell.id);
-			display(P1.getWeapon(), cell);
+			display(P1.attack(cellNumber), cell);
 			/* Check winning */
 			if(checkForWinning(P1)){
 				endGame(P1);
 			}
-		}else if(cells.length % 2 != 0){
-			P2OrCPU.getMovements().push(cell.id);
-			display(P2OrCPU.getWeapon(), cell);
+		}else if(cells.length % 2 == 0){
+			display(P2OrCPU.attack(cellNumber), cell);
 			/* Check winning */
 			if(checkForWinning(P2OrCPU)){
 				endGame(P2OrCPU);
@@ -113,13 +104,16 @@ const Gameboard = ((cells, removedCells) => {
 		}else{
 			endGame(null);
 		}
+		/* Update cells after checkin for the array
+		 * length */
+		updateAvailableCells(cellNumber);
 	}
 
 	const endGame = (winner) => {
 		if(winner === null){
 			console.log("A Tie");
 		}else{
-			console.log(winner + " Wins");
+			console.log(winner.getName() + " Wins");
 		}
 		reset();
 	}
