@@ -8,7 +8,15 @@ const Gameboard = ((cells, removedCells) => {
 		/* We store our cells in two arrays to have more
 		 * control over out data. */
 		removedCells.push(cellToRemove);
-		cells.splice(cellToRemove, 1);
+		/* Linear Search
+		 * We search for the number inside cells array to know
+		 * in what index it's located, and delete that index
+		 * with splice's array method. */
+		for(let i = 0; i < cells.length; i++){
+			if(cells[i] === cellToRemove){
+				cells.splice(i, 1);
+			}
+		}
 		console.log("cells available : " + cells);
 		console.log("cells not available : " + removedCells);
 	}
