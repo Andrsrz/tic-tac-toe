@@ -76,6 +76,7 @@ const Gameboard = ((cells, removedCells) => {
 
 	const p1vsp2 = () => {
 		console.log("p1vsp2");
+		CPUEnabled = false;
 		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("P2", [], "O");
 		displayPlayerStats(P1, P2OrCPU);
