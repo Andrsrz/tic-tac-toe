@@ -160,8 +160,8 @@ const Gameboard = ((cells, removedCells) => {
 				endGame(P1);
 			}else{
 				/* CPU PLAYS */
-				if(CPUEnabled){
-					updateAvailableCells(cellNumber);
+				updateAvailableCells(cellNumber);
+				if(CPUEnabled && cells.length != 0){
 					cpuPlays();
 				}
 			}
@@ -171,11 +171,8 @@ const Gameboard = ((cells, removedCells) => {
 			if(checkForWinning(P2OrCPU)){
 				endGame(P2OrCPU);
 			}
+			updateAvailableCells(cellNumber);
 		}
-
-		/* Update cells after checkin for the array
-		 * length */
-		updateAvailableCells(cellNumber);
 
 		/* If no one wons */
 		if(cells.length === 0 && !winner){
