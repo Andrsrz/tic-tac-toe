@@ -68,6 +68,7 @@ const Gameboard = ((cells, removedCells) => {
 
 	const p1vscpu = () => {
 		console.log("p1vscpu");
+		CPUEnabled = true;
 		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("CPU", [], "O");
 		displayPlayerStats(P1, P2OrCPU);
@@ -125,6 +126,24 @@ const Gameboard = ((cells, removedCells) => {
 		return false;
 	}
 
+	const getRandom = (max) => {
+		return Math.floor(Math.random() * Math.floor(max));
+	}
+
+	const cpuPlays = () => {
+		/* Get a random cell */
+		const randomIndex = getRandom(cells.length);
+		const cellNumber = cells[randomIndex];
+		const cell = document.getElementById(cellNumber);
+		cell.setAttribute("class", "tic-tac-toe-cell cell-disabled");
+		display(P2OrCPU.attack(cellNumber), cell);
+		/* Check winning */
+		if(checkForWinning(P2OrCPU)){
+			endGame(P2OrCPU);
+		}
+		updateAvailableCells(cellNumber);
+	}
+
 	const turn = (element) => {
 		/* Disable cell to the user */
 		const cell = element.target;
@@ -138,6 +157,12 @@ const Gameboard = ((cells, removedCells) => {
 			/* Check winning */
 			if(checkForWinning(P1)){
 				endGame(P1);
+			}else{
+				/* CPU PLAYS */
+				if(CPUEnabled){
+					updateAvailableCells(cellNumber);
+					cpuPlays();
+				}
 			}
 		}else if(cells.length % 2 == 0){
 			display(P2OrCPU.attack(cellNumber), cell);
