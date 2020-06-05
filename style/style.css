@@ -39,6 +39,10 @@
 	margin: auto;
 }
 
+.win {
+	color: #13A026;
+}
+
 @media all and (max-width: 1000px) {
 	#tic-tac-toe {
 		width: 400px;

@@ -164,6 +164,7 @@ const Gameboard = ((cells, removedCells) => {
 		whoWon ? announce = whoWon.getName() + " Wins" : announce = "It's a Tie";
 		const spanWinner = document.getElementById("winner");
 		let h2Winner = document.createElement("h2");
+		h2Winner.setAttribute("class", "win");
 		h2Winner.innerHTML = announce;
 		spanWinner.appendChild(h2Winner);
 		/* Disable all remaining cells until new game */
