@@ -1,5 +1,5 @@
 const Gameboard = ((cells, removedCells) => {
-	var P1 = Player("P1", [], "X");
+	var P1;
 	var P2OrCPU;
 	/* This method updates the available cells of the
 	 * gameboard, deleting the last cell that have been
@@ -38,11 +38,13 @@ const Gameboard = ((cells, removedCells) => {
 
 	const p1vscpu = () => {
 		console.log("p1vscpu");
+		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("CPU", [], "O");
 	}
 
 	const p1vsp2 = () => {
 		console.log("p1vsp2");
+		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("P2", [], "O");
 	}
 
@@ -128,7 +130,14 @@ const Gameboard = ((cells, removedCells) => {
 		}else{
 			console.log(winner.getName() + " Wins");
 		}
-		reset();
+		/* Disable all remaining cells until new game */
+		for(let i = 0; i < cells.length; i++){
+			let cell = document.getElementById(cells[i]);
+			cell.setAttribute("class", "tic-tac-toe-cell cell-disabled");
+		}
+		/* And delete player movements */
+		P1.resetMovements();
+		P2OrCPU.resetMovements();
 	}
 
 	return {start, reset, turn};

@@ -11,6 +11,11 @@ const Player = (name, movements, weapon) => {
 		moves.push(cell);
 	}
 
+	/* For new game */
+	const resetMovements = () => {
+		movements = [];
+	}
+
 	/* The attack method works as follows:
 	 * we get the cell's number the player is going
 	 * to attack to update the player movements and
@@ -20,5 +25,5 @@ const Player = (name, movements, weapon) => {
 		return getWeapon();
 	}
 
-	return {getName, getMovements, attack};
+	return {getName, getMovements, attack, resetMovements};
 };
