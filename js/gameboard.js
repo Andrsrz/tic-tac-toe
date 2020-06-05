@@ -17,8 +17,6 @@ const Gameboard = ((cells, removedCells) => {
 				cells.splice(i, 1);
 			}
 		}
-		console.log("cells available : " + cells);
-		console.log("cells not available : " + removedCells);
 	}
 
 	const resetCells = () => {
