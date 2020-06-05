@@ -36,18 +36,44 @@ const Gameboard = ((cells, removedCells) => {
 		}
 	}
 
+	const reset = () => {
+		console.log("reset");
+		clearBoard();
+	}
+
+	const displayPlayerStats = (player1, player2) => {
+		const spanP1 = document.getElementById("p1");
+		const spanP2OrCPU = document.getElementById("p2orcpu");
+
+		/* Clen previous stats */
+		while(spanP1.firstChild && spanP2OrCPU.firstChild){
+				spanP1.removeChild(spanP1.firstChild);
+				spanP2OrCPU.removeChild(spanP2OrCPU.firstChild);
+		}
+
+		let h2P1 = document.createElement("h2");
+		h2P1.innerHTML = player1.getName() + " : " + player1.getWeapon();
+		spanP1.appendChild(h2P1);
+		let h2P2OrCPU = document.createElement("h2");
+		h2P2OrCPU.innerHTML = player2.getName() + " : " + player2.getWeapon();
+		spanP2OrCPU.appendChild(h2P2OrCPU);
+	}
+
 	const p1vscpu = () => {
 		console.log("p1vscpu");
 		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("CPU", [], "O");
+		displayPlayerStats(P1, P2OrCPU);
 	}
 
 	const p1vsp2 = () => {
 		console.log("p1vsp2");
 		P1 = Player("P1", [], "X");
 		P2OrCPU = Player("P2", [], "O");
+		displayPlayerStats(P1, P2OrCPU);
 	}
 
+	/* Starts the game in the selected mode */
 	const start = (mode) => {
 		reset();
 		if(mode === 0){
@@ -55,11 +81,6 @@ const Gameboard = ((cells, removedCells) => {
 		}else if(mode === 1){
 			p1vsp2();
 		}
-	}
-
-	const reset = () => {
-		console.log("reset");
-		clearBoard();
 	}
 
 	const display = (text, cell) => {

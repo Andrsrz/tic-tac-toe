@@ -29,6 +29,10 @@
 	opacity: 0.8;
 }
 
+#players-stats {
+	justify-content: space-around;
+}
+
 @media all and (max-width: 1000px) {
 	#tic-tac-toe {
 		width: 400px;

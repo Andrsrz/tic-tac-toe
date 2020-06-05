@@ -25,5 +25,5 @@ const Player = (name, movements, weapon) => {
 		return getWeapon();
 	}
 
-	return {getName, getMovements, attack, resetMovements};
+	return {getName, getWeapon, getMovements, attack, resetMovements};
 };
