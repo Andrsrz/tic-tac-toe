@@ -9,10 +9,11 @@
 	height: 500px;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
+	grid-gap: 5px;
+	background-color: #000;
 }
 
 .tic-tac-toe-cell {
-	border: 1px solid #000;
 	cursor: pointer;
 	background-color: #4F94E7;
 	display: flex;
