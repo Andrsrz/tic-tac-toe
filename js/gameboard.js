@@ -1,6 +1,7 @@
 const Gameboard = ((cells, removedCells) => {
 	var P1;
 	var P2OrCPU;
+	var CPUEnabled = false;
 	/* This method updates the available cells of the
 	 * gameboard, deleting the last cell that have been
 	 * played. */
@@ -39,6 +40,11 @@ const Gameboard = ((cells, removedCells) => {
 	const reset = () => {
 		console.log("reset");
 		clearBoard();
+		/* Remove Winner Announcement */
+		const spanWinner = document.getElementById("winner");
+		if(spanWinner.firstChild){
+			spanWinner.removeChild(spanWinner.firstChild);
+		}
 	}
 
 	const displayPlayerStats = (player1, player2) => {
@@ -46,9 +52,9 @@ const Gameboard = ((cells, removedCells) => {
 		const spanP2OrCPU = document.getElementById("p2orcpu");
 
 		/* Clen previous stats */
-		while(spanP1.firstChild && spanP2OrCPU.firstChild){
-				spanP1.removeChild(spanP1.firstChild);
-				spanP2OrCPU.removeChild(spanP2OrCPU.firstChild);
+		if(spanP1.firstChild && spanP2OrCPU.firstChild){
+			spanP1.removeChild(spanP1.firstChild);
+			spanP2OrCPU.removeChild(spanP2OrCPU.firstChild);
 		}
 
 		let h2P1 = document.createElement("h2");
@@ -151,7 +157,13 @@ const Gameboard = ((cells, removedCells) => {
 	}
 
 	const endGame = (winner) => {
-		winner ? console.log(winner.getName() + " Wins") : console.log("It's a Tie");
+		/* Announce Winner */
+		let announce = "";
+		winner ? announce = winner.getName() + " Wins" : announce = "It's a Tie";
+		const spanWinner = document.getElementById("winner");
+		let h2Winner = document.createElement("h2");
+		h2Winner.innerHTML = announce;
+		spanWinner.appendChild(h2Winner);
 		/* Disable all remaining cells until new game */
 		for(let i = 0; i < cells.length; i++){
 			let cell = document.getElementById(cells[i]);
