@@ -102,6 +102,7 @@ const Gameboard = ((cells, removedCells) => {
 		const cell = element.target;
 		cell.setAttribute("class", "tic-tac-toe-cell cell-disabled");
 		const cellNumber = Number(cell.id);
+
 		/* game */
 		if(cells.length % 2 != 0){
 			/* P1 Stars */
@@ -116,20 +117,20 @@ const Gameboard = ((cells, removedCells) => {
 			if(checkForWinning(P2OrCPU)){
 				endGame(P2OrCPU);
 			}
-		}else{
-			endGame(null);
 		}
+
 		/* Update cells after checkin for the array
 		 * length */
 		updateAvailableCells(cellNumber);
+
+		/* If no one wons */
+		if(cells.length === 0){
+			endGame(null);
+		}
 	}
 
 	const endGame = (winner) => {
-		if(winner === null){
-			console.log("A Tie");
-		}else{
-			console.log(winner.getName() + " Wins");
-		}
+		winner ? console.log(winner.getName() + " Wins") : console.log("It's a Tie");
 		/* Disable all remaining cells until new game */
 		for(let i = 0; i < cells.length; i++){
 			let cell = document.getElementById(cells[i]);
